@@ -23,5 +23,15 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string"
         }
+    },
+    "api": {
+        "fastapirest": {
+            "ServiceName": "string",
+            "ClusterName": "string",
+            "PipelineName": "string",
+            "ContainerNames": "string",
+            "ApiName": "string",
+            "RootUrl": "string"
+        }
     }
 }

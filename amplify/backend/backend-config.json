@@ -78,18 +78,14 @@
           ]
         }
       ],
-      "deploymentMechanism": "INDENPENDENTLY_MANAGED",
+      "deploymentMechanism": "FULLY_MANAGED",
       "imageSource": {
         "type": "CUSTOM"
       },
       "restrictAccess": false,
-      "build": false,
+      "build": true,
       "providerPlugin": "awscloudformation",
       "service": "ElasticContainer",
-      "gitHubInfo": {
-        "path": "https://github.com/jonathanebrahimian/software-engineering-team-1-frontend.git",
-        "tokenSecretArn": "arn:aws:secretsmanager:us-east-2:223960871581:secret:amplify-sourcetas-dev-114316-api-fastapirest-github-token-okZRVs"
-      },
       "environmentMap": {
         "STORAGE_SOURCETADB_NAME": {
           "Ref": "storageSourceTADBName"

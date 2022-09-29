@@ -12,11 +12,12 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
+
 @app.get("/tables")
-def read_root():
-    response = client.list_tables()
-    print(response)
-    return response
+def tables():
+    result = client.list_tables()
+    print(result)
+    return result
 
 
 @app.get("/items/{item_id}")
