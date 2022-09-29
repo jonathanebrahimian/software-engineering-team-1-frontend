@@ -1,0 +1,10 @@
+{
+  "resourceName": "SourceTADB",
+  "tableName": "Classes",
+  "partitionKey": {
+    "fieldName": "class_id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

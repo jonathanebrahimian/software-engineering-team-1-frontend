@@ -1,0 +1,22 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sourcetas-dev-114316-authRole",
+      "UnauthRoleArn": "arn:aws:iam::223960871581:role/amplify-sourcetas-dev-114316-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::223960871581:role/amplify-sourcetas-dev-114316-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-sourcetas-dev-114316-deployment",
+      "UnauthRoleName": "amplify-sourcetas-dev-114316-unauthRole",
+      "StackName": "amplify-sourcetas-dev-114316",
+      "StackId": "arn:aws:cloudformation:us-east-2:223960871581:stack/amplify-sourcetas-dev-114316/d1cdcdd0-4015-11ed-9664-0a3ee5e151cc",
+      "AmplifyAppId": "d2zaewkc8jy3xu",
+      "NetworkStackS3Url": "https://s3.amazonaws.com/amplify-sourcetas-dev-114316-deployment/amplify-cfn-templates/networkingStackTemplate.json"
+    },
+    "categories": {
+      "auth": {
+        "sourcetasab0a873b": {},
+        "true": {}
+      }
+    }
+  }
+}
