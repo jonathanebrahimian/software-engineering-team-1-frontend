@@ -15,9 +15,10 @@ def read_root():
 
 @app.get("/tables")
 def tables():
-    result = client.list_tables()
-    print(result)
-    return result
+    response = client.get_item(TableName='Classes', Key={'fruitName':{'S':'Banana'}})
+    
+    print(response)
+    return response
 
 
 @app.get("/items/{item_id}")
