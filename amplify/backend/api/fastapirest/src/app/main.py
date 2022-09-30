@@ -15,6 +15,7 @@ def read_root():
 
 @app.get("/tables")
 def tables():
+    print("resources")
     table = client.Table('Classes-dev')
     response = table.put_item(Item={'class_id':'CS 43451','description':'this is a description'})
     print(response)
