@@ -16,10 +16,16 @@ def read_root():
 @app.get("/tables")
 def tables():
     print("here is the get")
-    response = client.put_item(TableName='Classes-dev', Key={'name':'CS 43451','description':'this is a description'})
+    response = client.put_item(TableName='Classes-dev', Item={'name':'CS 43451','description':'this is a description'})
     print(response)
     return response
 
+@app.get("/see")
+def see():
+    print("here is the get")
+    response = client.get_item(TableName='Classes-dev', Key={'name':'CS 43451'})
+    print(response)
+    return response
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
