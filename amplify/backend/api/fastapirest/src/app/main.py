@@ -13,9 +13,16 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/tables")
+@app.get("/dev")
 def tables():
-    response = client.get_item(TableName='Classes-dev', Key={'fruitName':{'S':'Banaa'}})
+    response = client.put_item(TableName='Classes',  Item={'fruitName':{'S':'Banana'},'key2':{'N':'value2'}})
+    print("here is the get")
+    print(response)
+    return response
+
+@app.get("/dev")
+def tables():
+    response = client.put_item(TableName='Classes-dev',  Item={'fruitName':{'S':'Banana'},'key2':{'N':'value2'}})
     print("here is the get")
     print(response)
     return response
