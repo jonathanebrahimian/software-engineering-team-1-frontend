@@ -16,7 +16,7 @@ def read_root():
 @app.get("/tables")
 def tables():
     print("here is the get")
-    response = client.put_item(TableName='Classes-dev', Item={'name':'CS 43451','description':'this is a description'})
+    response = client.put_item(Item={'name':{'S':'CS 43451'},'description':{'S':'this is a description'}})
     print(response)
     return response
 
