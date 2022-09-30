@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi import FastAPI
 import boto3
 
-client = boto3.client('dynamodb',region_name='us-east-2')
+client = boto3.resource('dynamodb',region_name='us-east-2')
 app = FastAPI()
 
 
