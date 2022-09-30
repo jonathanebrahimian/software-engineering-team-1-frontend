@@ -17,7 +17,7 @@ def read_root():
 def tables():
     print("here is the get")
     print("need change")
-    response = client.put_item(TableName='Classes-dev',Item={'name':{'S':'CS 43451'},'description':{'S':'this is a description'}})
+    response = client.put_item(TableName='Classes-dev', Item={'name':{'S':'CS 43451'},'description':{'S':'this is a description'}})
     print(response)
     return response
 
