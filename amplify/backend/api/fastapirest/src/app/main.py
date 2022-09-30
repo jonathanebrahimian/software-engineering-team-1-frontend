@@ -15,16 +15,16 @@ def read_root():
 
 @app.get("/tables")
 def tables():
-    print("here is the get")
-    print("need change")
-    response = client.put_item(TableName='Classes-dev', Item={'name':{'S':'CS 43451'},'description':{'S':'this is a description'}})
+    table = client.Table('Classes-dev')
+    response = table.put_item(Item={'class_id':'CS 43451','description':'this is a description'})
     print(response)
     return response
 
 @app.get("/see")
 def see():
     print("here is the put")
-    response = client.get_item(TableName='Classes-dev', Key={'name':'CS 43451'})
+    table = client.Table('Classes-dev')
+    response = table.get_item(Key={'class_id':'CS 43451'})
     print(response)
     return response
 
