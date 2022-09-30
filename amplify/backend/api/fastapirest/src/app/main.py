@@ -22,7 +22,7 @@ def tables():
 
 @app.get("/see")
 def see():
-    print("here is the get")
+    print("here is the put")
     response = client.get_item(TableName='Classes-dev', Key={'name':'CS 43451'})
     print(response)
     return response
