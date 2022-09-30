@@ -15,7 +15,7 @@ def read_root():
 
 @app.get("/tables")
 def tables():
-    response = client.get_item(TableName='Classes', Key={'fruitName':{'S':'Banaa'}})
+    response = client.get_item(TableName='Classes-dev', Key={'fruitName':{'S':'Banaa'}})
     print("here is the get")
     print(response)
     return response
