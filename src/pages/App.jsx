@@ -5,8 +5,6 @@ import { LandingPage } from './LandingPage';
 function App() {
 	return (
 		<>
-			{/* <p>Hi</p>
-			<Button variant="contained">Hello World</Button>; */}
 			<LandingPage></LandingPage>
 		</>
 	);
