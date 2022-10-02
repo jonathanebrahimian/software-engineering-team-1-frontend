@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+.card{
+    font-family: 'Poppins', sans-serif;
+    transition: box-shadow .3s;
+}
+  
+.card:hover{
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.1);
+}
