@@ -16,7 +16,7 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import DashboardTwoToneIcon from '@mui/icons-material/DashboardTwoTone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
@@ -78,7 +78,15 @@ function ApplicationBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position='static'>
                 <Toolbar>
-                    <DashboardTwoToneIcon sx={{ mr: 4 }} />
+                    <IconButton
+                        size='large'
+                        edge='start'
+                        color='inherit'
+                        aria-label='open drawer'
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuTwoToneIcon />
+                    </IconButton>
                     <Typography
                         variant="h6"
                         noWrao
