@@ -36,19 +36,19 @@ function ApplicationBar() {
 
     //Following functions are called when a menu is open/closed
     const handleMenuOpen = event => {
-
+        setAnchorEl(event.currentTarget);
     };
 
     const handleMenuClose = () => {
-
+        setAnchorEl(null);
     };
 
     const handleMobileMenuOpen = event => {
-
+        setMobileAnchorEl(event.currentTarget);
     };
 
     const handleMobileMenuClose = () => {
-
+        setMobileAnchorEl(null);
     };
 
     return (
