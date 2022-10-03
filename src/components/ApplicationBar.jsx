@@ -51,6 +51,29 @@ function ApplicationBar() {
         setMobileAnchorEl(null);
     };
 
+    //Renders Menu when view port is medium or beyond
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Option 1</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Option 2</MenuItem>
+        </Menu>
+    );
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position='static'>
