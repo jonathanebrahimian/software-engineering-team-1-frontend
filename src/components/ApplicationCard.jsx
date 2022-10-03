@@ -6,6 +6,7 @@
  *                  of the admin page to display the total number
  *                  of application submitted by students
  */
+
 import { Box } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/system";
 import InsightsTwoToneIcon from "@mui/icons-material/InsightsTwoTone";

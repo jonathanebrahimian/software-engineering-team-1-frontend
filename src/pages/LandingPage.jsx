@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox } from '@mui/material';
 
-export const LandingPage = (props) => {
+export const LandingPage = ({changeDark}) => {
 	const classesToTest = [
 		{
 			name: 'CS-2341',
@@ -145,6 +145,13 @@ export const LandingPage = (props) => {
 			justifyContent="center"
 			// style={{ minHeight: '100vh' }}
 		>
+
+			{
+				// Change Dark Mode
+			}
+			<Grid item xs={3}>
+				<Button onClick={changeDark}>Change Dark Mode</Button>
+			</Grid>
 
 			{
 				// Apply button
