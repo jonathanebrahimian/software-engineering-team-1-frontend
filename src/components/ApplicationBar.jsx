@@ -6,6 +6,7 @@
  *                  of the admin page
  */
 
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
@@ -23,6 +24,33 @@ import AdminPanelSettingsTwoToneIcon from '@mui/icons-material/AdminPanelSetting
 
 
 function ApplicationBar() {
+    //Note: An anchorEl is a prop used to set the position(i.e location) of a Menu component
+    //See documentation for more infos.
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
+
+    //When menu is closed "anchorEl" and "mobileAnchorEl" are "null",
+    //so the Boolean constructor returns "false"
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileAnchorEl);
+
+    //Following functions are called when a menu is open/closed
+    const handleMenuOpen = event => {
+
+    };
+
+    const handleMenuClose = () => {
+
+    };
+
+    const handleMobileMenuOpen = event => {
+
+    };
+
+    const handleMobileMenuClose = () => {
+
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position='static'>
