@@ -12,17 +12,7 @@ function AdminPage() {
             <ApplicationBar />
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component='div'
-                        sx={{ display: { sm: 'block' } }}
-                    >
-                        Summary
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sx={{ mx: 7 }}>
-                    <Divider></Divider>
+                    <Divider>Summary</Divider>
                 </Grid>
                 <Grid container sx={{ mx: 7, mt: 4 }} spacing={2}>
                     <Grid item xs={6}>
@@ -31,6 +21,9 @@ function AdminPage() {
                     <Grid item xs={6}>
                         <ApplicationCard totalApplication={2} />
                     </Grid>
+                </Grid>
+                <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
+                    <Divider>Recently Published Positions (3)</Divider>
                 </Grid>
             </Grid>
         </Stack >
