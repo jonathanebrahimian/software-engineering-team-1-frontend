@@ -24,11 +24,13 @@ function AdminPage() {
                 <Grid item xs={12} sx={{ mx: 7 }}>
                     <Divider></Divider>
                 </Grid>
-                <Grid item xs={12} sx={{ mx: 7 }}>
-                    <PublicationCard totalPublication={4} />
-                </Grid>
-                <Grid item xs={12} sx={{ mx: 7 }}>
-                    <ApplicationCard totalApplication={2} />
+                <Grid container sx={{ mx: 7, mt: 4 }} spacing={2}>
+                    <Grid item xs={6}>
+                        <PublicationCard totalPublication={4} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <ApplicationCard totalApplication={2} />
+                    </Grid>
                 </Grid>
             </Grid>
         </Stack >
