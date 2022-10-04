@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox } from '@mui/material';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export const LandingPage = ({changeDark}) => {
+export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
 
 	const classesToTest = [
@@ -143,28 +143,29 @@ export const LandingPage = ({changeDark}) => {
 		<Grid
 			container
 			spacing={4}
-			direction="column"
+			direction="row"
 			alignItems="center"
 			justifyContent="center"
 		// style={{ minHeight: '100vh' }}
 		>
 
 			{
-				// Change Dark Mode
+				// Go to admin page
 			}
-			<Grid item xs={3}>
+			<Grid item xs>
 				<div>
 					<Button onClick={() => {
 						navigate('/admin');
 					}} >Go To Admin Page</Button>
-				<Button onClick={changeDark}>Change Dark Mode</Button>
 				</div>
 			</Grid>
+
+
 
 			{
 				// Apply button
 			}
-			<Grid item xs={3}>
+			<Grid item >
 				<Button onClick={
 					() => {
 						// When the user clicks the Apply button
@@ -173,6 +174,10 @@ export const LandingPage = ({changeDark}) => {
 				}>
 					{`Apply to ${selected.length || ""} selected classes`}
 				</Button>
+			</Grid>
+
+			<Grid item xs={1}>
+				<Button onClick={changeDark}>Change Dark Mode</Button>
 			</Grid>
 
 			{
@@ -185,18 +190,23 @@ export const LandingPage = ({changeDark}) => {
 			{
 				// The search bar itself
 			}
-			<Grid item xs={3}>
-				<Box
-					display="flex"
-					justifyContent="center"
-					alignItems="center"
-				>
-					<Typography justifyContent={"center"}>Search for Class Code: </Typography>
-					<TextField justifyContent={"center"} onChange={(event) => {
-						setSearchValue(event.target.value);
-					}}>
-					</TextField>
-				</Box>
+			<Grid container spacing={4}
+				direction="column"
+				alignItems="center"
+				justifyContent="center">
+				<Grid item xs={3}>
+					<Box
+						display="flex"
+						justifyContent="center"
+						alignItems="center"
+					>
+						<Typography justifyContent={"center"}>Search for Class Code: </Typography>
+						<TextField justifyContent={"center"} onChange={(event) => {
+							setSearchValue(event.target.value);
+						}}>
+						</TextField>
+					</Box>
+				</Grid>
 			</Grid>
 
 			{
