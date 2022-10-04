@@ -169,12 +169,12 @@ function ApplicationBar() {
                         variant="h6"
                         noWrao
                         component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{ display: { sm: 'block' } }}
                     >
                         Dashboard
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { md: 'flex' } }}>
                         <IconButton
                             size='large'
                             aria-label="show 17 new noticatifications"
