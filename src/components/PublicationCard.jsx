@@ -34,7 +34,6 @@ function PublicationCard({ totalPublication }) {
                 boxShadow: 1, // This style property does NOT work when theme is applied, so I am styling using CSS
                 borderRadius: 2,
                 p: 2,
-                m: 2,
                 width: 'auto',
                 border: "1px solid #EAECEE"
             }}
