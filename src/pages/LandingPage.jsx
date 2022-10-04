@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox } from '@mui/material';
 
-export const LandingPage = ({changeDark}) => {
+export const LandingPage = ({ changeDark }) => {
 	const classesToTest = [
 		{
 			name: 'CS-2341',
@@ -112,14 +112,14 @@ export const LandingPage = ({changeDark}) => {
 				>
 					<Grid item>
 						<Typography id="modal-modal-title" variant="h6" component="h2">
-							Name: 
+							Name:
 						</Typography>
 						<Input onChange={(event) => {
 							setName(event.target.value);
 						}}></Input>
 
 						<Typography id="modal-modal-title" variant="h6" component="h2">
-							Email: 
+							Email:
 						</Typography>
 						<Input onChange={(event) => {
 							setEmail(event.target.value);
@@ -143,7 +143,7 @@ export const LandingPage = ({changeDark}) => {
 			direction="column"
 			alignItems="center"
 			justifyContent="center"
-			// style={{ minHeight: '100vh' }}
+		// style={{ minHeight: '100vh' }}
 		>
 
 			{
@@ -163,16 +163,16 @@ export const LandingPage = ({changeDark}) => {
 						openModal();
 					}
 				}>
-					Apply To Selected
+					{`Apply to ${selected.length || ""} selected classes`}
 				</Button>
-				</Grid>
+			</Grid>
 
 			{
 				// Title of the search bar
 			}
 			<Grid item xs={3}>
-				
-				</Grid>
+
+			</Grid>
 
 			{
 				// The search bar itself
@@ -193,14 +193,14 @@ export const LandingPage = ({changeDark}) => {
 
 			{
 				// Temporary to test the search value
-				}
+			}
 			<Grid item xs={3}>
 				<Typography> TEST You are searching for: {searchValue} </Typography>
-				</Grid>
+			</Grid>
 
 			<Grid item>
 				<Typography> Classes: </Typography>
-				</Grid>
+			</Grid>
 			{
 				(classes.map(element => {
 					if (element.name.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -210,24 +210,24 @@ export const LandingPage = ({changeDark}) => {
 								<Typography> {element.description} </Typography>
 								<Typography>
 									Apply:
-								<Checkbox {...label} checked={element.selected} onChange={() => {
-									if (element.selected) {
-										console.log('deselecting');
-										deselect(element.name);
-										element.selected = false;
-									}
-									else {
-										console.log('selecting');
-										select(element.name);
-										element.selected = true;
-									}
-								} } />
+									<Checkbox {...label} checked={element.selected} onChange={() => {
+										if (element.selected) {
+											console.log('deselecting');
+											deselect(element.name);
+											element.selected = false;
+										}
+										else {
+											console.log('selecting');
+											select(element.name);
+											element.selected = true;
+										}
+									}} />
 								</Typography>
 							</Grid>
 						)
 					}
-			}))}
+				}))}
 
-		</Grid> 
+		</Grid>
 	</>
 }
