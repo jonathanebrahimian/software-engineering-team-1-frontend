@@ -23,17 +23,20 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ClassTwoToneIcon from '@mui/icons-material/ClassTwoTone';
 import AnalyticsTwoToneIcon from '@mui/icons-material/AnalyticsTwoTone';
 import AdminPanelSettingsTwoToneIcon from '@mui/icons-material/AdminPanelSettingsTwoTone';
+import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 
 
 function ApplicationBar() {
     //Note: An anchorEl is a prop used to set the position(i.e location) of a Menu component
     //See documentation for more infos.
     const [mainAnchorEl, setMainAnchorEl] = useState(null);
+    const [adminAnchorEl, setAdminAnchorEl] = useState(null);
     const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
 
     //When menu is closed "anchorEl" and "mobileAnchorEl" are "null",
     //so the Boolean constructor returns "false"
     const isMainMenuOpen = Boolean(mainAnchorEl);
+    const isAdminMenuOpen = Boolean(adminAnchorEl);
     const isMobileMenuOpen = Boolean(mobileAnchorEl);
 
     //Following functions are called when a menu is open/closed
@@ -44,6 +47,14 @@ function ApplicationBar() {
     const handleMainMenuClose = () => {
         setMainAnchorEl(null);
     };
+
+    const handleAdminMenuOpen = event => {
+        setAdminAnchorEl(event.currentTarget);
+    }
+
+    const handleAdminMenuClose = () => {
+        setAdminAnchorEl(null);
+    }
 
     const handleMobileMenuOpen = event => {
         setMobileAnchorEl(event.currentTarget);
@@ -107,6 +118,39 @@ function ApplicationBar() {
         </Menu>
     );
 
+    //Admin menu
+    const adminMenuId = 'admin-menu';
+    const renderAdminMenu = (
+        <Menu
+            anchorEl={adminAnchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={adminMenuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isAdminMenuOpen}
+            onClose={handleAdminMenuClose}
+        >
+            <MenuItem>
+                <IconButton
+                    size='large'
+                    aria-label='logout'
+                    aria-haspopup='true'
+                    color='inherit'
+                    onClick={handleAdminMenuClose}
+                >
+                    <LogoutTwoToneIcon />
+                </IconButton>
+                <p>Logout</p>
+            </MenuItem>
+        </Menu>
+    );
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position='static'>
@@ -146,7 +190,7 @@ function ApplicationBar() {
                             aria-label='account of current user'
                             //aria-controls={}
                             aria-haspopup='true'
-                            //</Box>onClick={ }
+                            onClick={handleAdminMenuOpen}
                             color='inherit'>
                             <AdminPanelSettingsTwoToneIcon />
                         </IconButton>
@@ -154,6 +198,7 @@ function ApplicationBar() {
                 </Toolbar>
             </AppBar>
             {renderMainMenu}
+            {renderAdminMenu}
         </Box>
     );
 }
