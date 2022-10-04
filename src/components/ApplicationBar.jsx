@@ -20,27 +20,29 @@ import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import DashboardTwoToneIcon from '@mui/icons-material/DashboardTwoTone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import ClassTwoToneIcon from '@mui/icons-material/ClassTwoTone';
+import AnalyticsTwoToneIcon from '@mui/icons-material/AnalyticsTwoTone';
 import AdminPanelSettingsTwoToneIcon from '@mui/icons-material/AdminPanelSettingsTwoTone';
 
 
 function ApplicationBar() {
     //Note: An anchorEl is a prop used to set the position(i.e location) of a Menu component
     //See documentation for more infos.
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [mainAnchorEl, setMainAnchorEl] = useState(null);
     const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
 
     //When menu is closed "anchorEl" and "mobileAnchorEl" are "null",
     //so the Boolean constructor returns "false"
-    const isMenuOpen = Boolean(anchorEl);
+    const isMainMenuOpen = Boolean(mainAnchorEl);
     const isMobileMenuOpen = Boolean(mobileAnchorEl);
 
     //Following functions are called when a menu is open/closed
-    const handleMenuOpen = event => {
-        setAnchorEl(event.currentTarget);
+    const handleMainMenuOpen = event => {
+        setMainAnchorEl(event.currentTarget);
     };
 
-    const handleMenuClose = () => {
-        setAnchorEl(null);
+    const handleMainMenuClose = () => {
+        setMainAnchorEl(null);
     };
 
     const handleMobileMenuOpen = event => {
@@ -52,25 +54,56 @@ function ApplicationBar() {
     };
 
     //Renders Menu when view port is medium or beyond
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
+    const mainMenuId = 'main-menu';
+    const renderMainMenu = (
         <Menu
-            anchorEl={anchorEl}
+            anchorEl={mainAnchorEl}
             anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
             }}
-            id={menuId}
+            id={mainMenuId}
             keepMounted
             transformOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
             }}
-            open={isMenuOpen} //Menu is shown when "isMenuOpen" is true
-            onClose={handleMenuClose}
+            open={isMainMenuOpen} //Menu is shown when "isMenuOpen" is true
+            onClose={handleMainMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Option 1</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Option 2</MenuItem>
+            <MenuItem onClick={handleMainMenuClose}>
+                <IconButton
+                    size="large"
+                    aria-label='Link to admin dashboard'
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <DashboardTwoToneIcon />
+                </IconButton>
+                <p>Dashboard</p>
+            </MenuItem>
+            <MenuItem onClick={handleMainMenuClose}>
+                <IconButton
+                    size='large'
+                    aria-label='Link to published classes'
+                    aria-haspopup="true"
+                    color='inherit'
+                >
+                    <ClassTwoToneIcon />
+                </IconButton>
+                <p>Classes</p>
+            </MenuItem>
+            <MenuItem onClick={handleMainMenuClose}>
+                <IconButton
+                    size='large'
+                    aria-label='Link to statistics'
+                    aria-haspopup='true'
+                    color='inherit'
+                >
+                    <AnalyticsTwoToneIcon />
+                </IconButton>
+                <p>Analytics</p>
+            </MenuItem>
         </Menu>
     );
 
@@ -84,7 +117,7 @@ function ApplicationBar() {
                         color='inherit'
                         aria-label='open drawer'
                         sx={{ mr: 2 }}
-                        onClick={handleMenuOpen}
+                        onClick={handleMainMenuOpen}
                     >
                         <MenuTwoToneIcon />
                     </IconButton>
@@ -120,7 +153,7 @@ function ApplicationBar() {
                     </Box>
                 </Toolbar>
             </AppBar>
-            {renderMenu}
+            {renderMainMenu}
         </Box>
     );
 }
