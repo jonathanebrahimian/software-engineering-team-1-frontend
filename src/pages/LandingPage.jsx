@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox } from '@mui/material';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const LandingPage = ({changeDark}) => {
+	const navigate = useNavigate();
+
 	const classesToTest = [
 		{
 			name: 'CS-2341',
@@ -150,7 +153,12 @@ export const LandingPage = ({changeDark}) => {
 				// Change Dark Mode
 			}
 			<Grid item xs={3}>
+				<div>
+					<Button onClick={() => {
+						navigate('/admin');
+					}} >Go To Admin Page</Button>
 				<Button onClick={changeDark}>Change Dark Mode</Button>
+				</div>
 			</Grid>
 
 			{

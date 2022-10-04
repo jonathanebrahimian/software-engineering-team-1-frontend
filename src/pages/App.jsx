@@ -2,6 +2,8 @@ import Button from '@mui/material/Button';
 import * as React from 'react';
 import { LandingPage } from './LandingPage';
 import ThemeConfig from '../theme';
+import { Routes } from 'react-router-dom';
+import Router from '../routes';
 
 function App() {
 	const [dark, setDark] = React.useState(true);
@@ -13,7 +15,7 @@ function App() {
 	return (
 		<>
 			<ThemeConfig darkMode={dark}>
-				<LandingPage changeDark={changeMode}></LandingPage>
+				<Router changeDark={changeMode}/>
 			</ThemeConfig>
 		</>
 	);
