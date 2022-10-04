@@ -66,7 +66,7 @@ function ApplicationBar() {
                 vertical: 'top',
                 horizontal: 'right',
             }}
-            open={isMenuOpen}
+            open={isMenuOpen} //Menu is shown when "isMenuOpen" is true
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Option 1</MenuItem>
@@ -84,6 +84,7 @@ function ApplicationBar() {
                         color='inherit'
                         aria-label='open drawer'
                         sx={{ mr: 2 }}
+                        onClick={handleMenuOpen}
                     >
                         <MenuTwoToneIcon />
                     </IconButton>
@@ -119,6 +120,7 @@ function ApplicationBar() {
                     </Box>
                 </Toolbar>
             </AppBar>
+            {renderMenu}
         </Box>
     );
 }
