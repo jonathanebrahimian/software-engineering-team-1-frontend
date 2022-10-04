@@ -167,7 +167,7 @@ function ApplicationBar() {
                     </IconButton>
                     <Typography
                         variant="h6"
-                        noWrao
+                        noWrap
                         component="div"
                         sx={{ display: { sm: 'block' } }}
                     >
