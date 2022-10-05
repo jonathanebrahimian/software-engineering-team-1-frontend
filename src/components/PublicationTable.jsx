@@ -35,7 +35,7 @@ function PublicationTable({ positions }) {
                             key={position.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell>{position.class}</TableCell>
+                            <TableCell>{position.className}</TableCell>
                             <TableCell>{position.section}</TableCell>
                             <TableCell align='center'>{position.id}</TableCell>
                             <TableCell align='center'>{position.applications}</TableCell>
@@ -43,7 +43,7 @@ function PublicationTable({ positions }) {
                                 {
                                     //I am using a ternary notation here
                                     //is status 'open' render green chip, otherwise render red chip
-                                    position.status == 'open'
+                                    position.status === 'open'
                                         ? <Chip label="Open" variant='outlined' color='success' />
                                         : <Chip label="Closed" variant='outlined' color='error' />
                                 }
