@@ -6,7 +6,7 @@ import { Divider, Typography } from "@mui/material";
 import ApplicationCard from '../components/ApplicationCard';
 import PublicationCard from '../components/PublicationCard'
 import PublicationTable from '../components/PublicationTable';
-
+import s from '../components/styles/Divider.module.css';
 
 //hypothetical data fetched from server
 //To be removed, when mock API is operational
@@ -32,7 +32,7 @@ function AdminPage() {
             <ApplicationBar />
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
-                    <Divider>Summary</Divider>
+                    <Divider className={s.title}>Summary</Divider>
                 </Grid>
                 <Grid container sx={{ mx: 7, mt: 4 }} spacing={2}>
                     <Grid item xs={6}>
@@ -43,7 +43,7 @@ function AdminPage() {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
-                    <Divider>Recently Published Positions (5)</Divider>
+                    <Divider className={s.title}>Recently Published Positions (5)</Divider>
                 </Grid>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
                     <PublicationTable positions={positions} />
