@@ -5,24 +5,9 @@ import { Navigate, useNavigate } from 'react-router-dom';
 export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
 
-	const classesToTest = [
-		{
-			name: 'CS-2341',
-			labCode: 'N-11',
-			startTime: '10:00AM',
-			endTime: '11:00AM',
-			description: 'this is a class description',
-			selected: false,
-		},
-		{
-			name: 'CS-1342',
-			labCode: 'N-12',
-			startTime: '11:00AM',
-			endTime: '12:00PM',
-			description: 'this is another class description',
-			selected: false,
-		}
-	]
+	// const classesToTest = [
+
+	// ]
 
 	const [classes, setClasses] = useState([]);
 	const [selected, setSelected] = useState([]);
@@ -32,8 +17,18 @@ export const LandingPage = ({ changeDark }) => {
 	const [email, setEmail] = useState('');
 
 	useEffect(() => {
-		setClasses(classesToTest);
+		const getTasks = async () => {
+			const classesFromServer = await fetchClasses();
+			setClasses(classesFromServer);
+		}
+		getTasks();
 	}, []);
+
+	const fetchClasses = async () => {
+		const res = await fetch("http://localhost:5000/classes");
+		const data = await res.json();
+		return data;
+	}
 
 	const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -220,10 +215,10 @@ export const LandingPage = ({ changeDark }) => {
 				<Typography> Classes: </Typography>
 			</Grid>
 			{
-				(classes.map(element => {
+				(classes.map((element, index) => {
 					if (element.name.toLowerCase().includes(searchValue.toLowerCase())) {
 						return (
-							<Grid item>
+							<Grid item key={index}>
 								<Typography> {element.name}, {element.labCode}, {element.startTime} - {element.endTime} </Typography>
 								<Typography> {element.description} </Typography>
 								<Typography>
@@ -244,6 +239,7 @@ export const LandingPage = ({ changeDark }) => {
 							</Grid>
 						)
 					}
+
 				}))}
 
 		</Grid>
