@@ -8,10 +8,6 @@ import { fetchClasses } from '../api/classesApi';
 export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
 
-	// const classesToTest = [
-
-	// ]
-
 	const [classes, setClasses] = useState([]);
 	const [selected, setSelected] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
