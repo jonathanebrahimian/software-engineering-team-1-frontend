@@ -1,0 +1,22 @@
+{
+	"classes": [
+		{
+			"id": "1",
+			"name": "CS-2341",
+			"labCode": "N-11",
+			"startTime": "10:00AM",
+			"endTime": "11:00AM",
+			"description": "this is a class description",
+			"selected": false
+		},
+		{
+			"id": "2",
+			"name": "CS-1342",
+			"labCode": "N-12",
+			"startTime": "11:00AM",
+			"endTime": "12:00PM",
+			"description": "this is another class description",
+			"selected": false
+		}
+	]
+}
