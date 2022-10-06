@@ -332,6 +332,67 @@
       "Properties": {
         "ContainerDefinitions": [
           {
+            "Command": [
+              "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+            ],
+            "EntryPoint": [],
+            "Environment": [
+              {
+                "Name": "STORAGE_SOURCETADB_NAME",
+                "Value": {
+                  "Ref": "storageSourceTADBName"
+                }
+              },
+              {
+                "Name": "STORAGE_SOURCETADB_ARN",
+                "Value": {
+                  "Ref": "storageSourceTADBArn"
+                }
+              },
+              {
+                "Name": "STORAGE_SOURCETADB_STREAMARN",
+                "Value": {
+                  "Ref": "storageSourceTADBStreamArn"
+                }
+              },
+              {
+                "Name": "STORAGE_RESUMES_BUCKETNAME",
+                "Value": {
+                  "Ref": "storageResumesBucketName"
+                }
+              },
+              {
+                "Name": "AUTH_SOURCETASAB0A873B_USERPOOLID",
+                "Value": {
+                  "Ref": "authsourcetasab0a873bUserPoolId"
+                }
+              }
+            ],
+            "Essential": true,
+            "Image": "amazon/dynamodb-local:latest",
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "dynamodblocalContainerLogGroup077A3A77"
+                },
+                "awslogs-stream-prefix": "ecs",
+                "awslogs-region": {
+                  "Ref": "AWS::Region"
+                }
+              }
+            },
+            "Name": "dynamodb-local",
+            "PortMappings": [
+              {
+                "ContainerPort": 8000,
+                "Protocol": "tcp"
+              }
+            ],
+            "Secrets": [],
+            "WorkingDirectory": "/home/dynamodblocal"
+          },
+          {
             "Command": [],
             "EntryPoint": [],
             "Environment": [
@@ -372,17 +433,47 @@
                 "",
                 [
                   {
-                    "Ref": "AWS::AccountId"
+                    "Fn::Select": [
+                      4,
+                      {
+                        "Fn::Split": [
+                          ":",
+                          {
+                            "Fn::GetAtt": [
+                              "app-nodeRepository",
+                              "Arn"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   },
                   ".dkr.ecr.",
                   {
-                    "Ref": "AWS::Region"
+                    "Fn::Select": [
+                      3,
+                      {
+                        "Fn::Split": [
+                          ":",
+                          {
+                            "Fn::GetAtt": [
+                              "app-nodeRepository",
+                              "Arn"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   },
                   ".",
                   {
                     "Ref": "AWS::URLSuffix"
                   },
-                  "/amplify-sourcetas-dev-114316-api-fastapirest-api:latest"
+                  "/",
+                  {
+                    "Ref": "app-nodeRepository"
+                  },
+                  ":latest"
                 ]
               ]
             },
@@ -390,7 +481,7 @@
               "LogDriver": "awslogs",
               "Options": {
                 "awslogs-group": {
-                  "Ref": "apiContainerLogGroupA9A8D168"
+                  "Ref": "appnodeContainerLogGroup00DF9A4D"
                 },
                 "awslogs-stream-prefix": "ecs",
                 "awslogs-region": {
@@ -398,7 +489,7 @@
                 }
               }
             },
-            "Name": "api",
+            "Name": "app-node",
             "PortMappings": [
               {
                 "ContainerPort": 80,
@@ -463,9 +554,8 @@
           "Statement": [
             {
               "Action": [
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
               ],
               "Effect": "Allow",
               "Resource": {
@@ -476,7 +566,7 @@
                     {
                       "Ref": "AWS::Partition"
                     },
-                    ":ecr:",
+                    ":logs:",
                     {
                       "Ref": "AWS::Region"
                     },
@@ -484,8 +574,26 @@
                     {
                       "Ref": "AWS::AccountId"
                     },
-                    ":repository/amplify-sourcetas-dev-114316-api-fastapirest-api"
+                    ":log-group:",
+                    {
+                      "Ref": "dynamodblocalContainerLogGroup077A3A77"
+                    },
+                    ":*"
                   ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "app-nodeRepository",
+                  "Arn"
                 ]
               }
             },
@@ -518,7 +626,7 @@
                     },
                     ":log-group:",
                     {
-                      "Ref": "apiContainerLogGroupA9A8D168"
+                      "Ref": "appnodeContainerLogGroup00DF9A4D"
                     },
                     ":*"
                   ]
@@ -536,7 +644,7 @@
         ]
       }
     },
-    "apiContainerLogGroupA9A8D168": {
+    "dynamodblocalContainerLogGroup077A3A77": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
         "LogGroupName": {
@@ -547,7 +655,7 @@
               {
                 "Ref": "rootStackName"
               },
-              "-fastapirest-api"
+              "-fastapirest-dynamodb-local"
             ]
           ]
         },
@@ -555,6 +663,47 @@
       },
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete"
+    },
+    "appnodeContainerLogGroup00DF9A4D": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/ecs/",
+              {
+                "Ref": "rootStackName"
+              },
+              "-fastapirest-app-node"
+            ]
+          ]
+        },
+        "RetentionInDays": 30
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete"
+    },
+    "app-nodeRepository": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "LifecyclePolicy": {
+          "LifecyclePolicyText": "{\"rules\":[{\"rulePriority\":10,\"selection\":{\"tagStatus\":\"tagged\",\"tagPrefixList\":[\"latest\"],\"countType\":\"imageCountMoreThan\",\"countNumber\":1},\"action\":{\"type\":\"expire\"}},{\"rulePriority\":100,\"selection\":{\"tagStatus\":\"any\",\"countType\":\"sinceImagePushed\",\"countNumber\":7,\"countUnit\":\"days\"},\"action\":{\"type\":\"expire\"}}]}"
+        },
+        "RepositoryName": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Ref": "rootStackName"
+              },
+              "-api-fastapirest-app-node"
+            ]
+          ]
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain"
     },
     "ServiceSG": {
       "Type": "AWS::EC2::SecurityGroup",
@@ -568,6 +717,14 @@
           }
         ],
         "SecurityGroupIngress": [
+          {
+            "CidrIp": {
+              "Ref": "NetworkStackVpcCidrBlock"
+            },
+            "FromPort": 8000,
+            "IpProtocol": "tcp",
+            "ToPort": 8000
+          },
           {
             "CidrIp": {
               "Ref": "NetworkStackVpcCidrBlock"
@@ -588,7 +745,7 @@
         "Cluster": {
           "Ref": "NetworkStackClusterName"
         },
-        "DesiredCount": 1,
+        "DesiredCount": 0,
         "LaunchType": "FARGATE",
         "NetworkConfiguration": {
           "AwsvpcConfiguration": {
@@ -606,10 +763,10 @@
             }
           }
         },
-        "ServiceName": "fastapirest-service-api-80",
+        "ServiceName": "fastapirest-service-app-node-80",
         "ServiceRegistries": [
           {
-            "ContainerName": "api",
+            "ContainerName": "app-node",
             "ContainerPort": 80,
             "RegistryArn": {
               "Fn::GetAtt": [
@@ -911,7 +1068,7 @@
             "CLUSTER_NAME": {
               "Ref": "NetworkStackClusterName"
             },
-            "SERVICE_NAME": "fastapirest-service-api-80"
+            "SERVICE_NAME": "fastapirest-service-app-node-80"
           }
         },
         "Handler": "index.handler",
@@ -1111,19 +1268,49 @@
                         {
                           "Ref": "AWS::AccountId"
                         },
-                        "\"},{\"name\":\"api_REPOSITORY_URI\",\"type\":\"PLAINTEXT\",\"value\":\"",
+                        "\"},{\"name\":\"app-node_REPOSITORY_URI\",\"type\":\"PLAINTEXT\",\"value\":\"",
                         {
-                          "Ref": "AWS::AccountId"
+                          "Fn::Select": [
+                            4,
+                            {
+                              "Fn::Split": [
+                                ":",
+                                {
+                                  "Fn::GetAtt": [
+                                    "app-nodeRepository",
+                                    "Arn"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         },
                         ".dkr.ecr.",
                         {
-                          "Ref": "AWS::Region"
+                          "Fn::Select": [
+                            3,
+                            {
+                              "Fn::Split": [
+                                ":",
+                                {
+                                  "Fn::GetAtt": [
+                                    "app-nodeRepository",
+                                    "Arn"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         },
                         ".",
                         {
                           "Ref": "AWS::URLSuffix"
                         },
-                        "/amplify-sourcetas-dev-114316-api-fastapirest-api\"}]"
+                        "/",
+                        {
+                          "Ref": "app-nodeRepository"
+                        },
+                        "\"}]"
                       ]
                     ]
                   }
@@ -1189,7 +1376,7 @@
                   "ClusterName": {
                     "Ref": "NetworkStackClusterName"
                   },
-                  "ServiceName": "fastapirest-service-api-80"
+                  "ServiceName": "fastapirest-service-app-node-80"
                 },
                 "InputArtifacts": [
                   {
@@ -1222,7 +1409,7 @@
               {
                 "Ref": "rootStackName"
               },
-              "-fastapirest-service-api-80"
+              "-fastapirest-service-app-node-80"
             ]
           ]
         }
@@ -2406,7 +2593,7 @@
   },
   "Outputs": {
     "ServiceName": {
-      "Value": "fastapirest-service-api-80"
+      "Value": "fastapirest-service-app-node-80"
     },
     "ClusterName": {
       "Value": {
@@ -2421,13 +2608,13 @@
             {
               "Ref": "rootStackName"
             },
-            "-fastapirest-service-api-80"
+            "-fastapirest-service-app-node-80"
           ]
         ]
       }
     },
     "ContainerNames": {
-      "Value": "api"
+      "Value": "dynamodb-local,app-node"
     },
     "ApiName": {
       "Value": "fastapirest"

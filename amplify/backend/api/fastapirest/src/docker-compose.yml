@@ -13,18 +13,20 @@ services:
 
   app-node:
     image: fastapi:latest
-    build: .
+    build: 
+      context: ./app
+      dockerfile: Dockerfile 
     ports:
       - "80:80"
     # depends_on:
     #   - "dynamodb-local"
     # links:
     #   - "dynamodb-local"
-    volumes:
-      - type: bind
-        source: ./app
-        target: /code/app
-    environment:
-      AWS_ACCESS_KEY_ID: 'DUMMYIDEXAMPLE'
-      AWS_SECRET_ACCESS_KEY: 'DUMMYEXAMPLEKEY'
-      REGION: 'us-east-2'
+    # volumes:
+    #   - type: bind
+    #     source: ./app
+    #     target: /code/app
+    # environment:
+    #   AWS_ACCESS_KEY_ID: 'DUMMYIDEXAMPLE'
+    #   AWS_SECRET_ACCESS_KEY: 'DUMMYEXAMPLEKEY'
+    #   REGION: 'us-east-2'
