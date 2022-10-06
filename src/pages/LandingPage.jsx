@@ -175,7 +175,7 @@ export const LandingPage = ({ changeDark }) => {
 							changeDark();
 							console.log(e);
 						}}>
-							{darkmodeIcon ? <Brightness7Icon /> : <DarkModeIcon />}
+							{darkmodeIcon ? <DarkModeIcon /> : <Brightness7Icon />}
 						</IconButton>
 					</Grid>
 
