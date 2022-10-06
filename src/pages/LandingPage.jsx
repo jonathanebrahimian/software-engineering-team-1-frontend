@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox } from '@mui/material';
+import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox, IconButton } from '@mui/material';
 import { Navigate, useNavigate } from 'react-router-dom';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
@@ -17,6 +19,7 @@ export const LandingPage = ({ changeDark }) => {
 	const [email, setEmail] = useState('');
 
 	useEffect(() => {
+		document.title = "Landing Page";
 		const getTasks = async () => {
 			const classesFromServer = await fetchClasses();
 			setClasses(classesFromServer);
@@ -172,7 +175,9 @@ export const LandingPage = ({ changeDark }) => {
 			</Grid>
 
 			<Grid item xs={1}>
-				<Button onClick={changeDark}>Change Dark Mode</Button>
+				<IconButton aria-label="delete" onClick={changeDark}>
+					{changeDark ? <Brightness7Icon /> : <DarkModeIcon />}
+				</IconButton>
 			</Grid>
 
 			{
