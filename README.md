@@ -14,3 +14,21 @@ to Software Engineering Principles.
 - [Jonathan Ebrahimian](https://github.com/jonathanebrahimian)
 - [Pierce Clemmons](https://github.com/PierceClemmons)
 - [Kassi Bertrand](https://github.com/kassi-bertrand)
+
+
+# Backend Dev
+
+1.  
+```
+cd amplify/backend/api/fastapirest/src
+```
+
+2. Build and run docker images (DynamoDB and FastAPI backend)
+```
+docker-compose up
+```
+
+3. Access routes at
+```
+http://localhost/<endpoint>
+```
