@@ -142,40 +142,47 @@ export const LandingPage = ({ changeDark }) => {
 			{
 				// Go to admin page
 			}
-			<Grid item xs>
-				<div>
-					<Button onClick={() => {
-						navigate('/admin');
-					}} >Go To Admin Page</Button>
-				</div>
-			</Grid>
+			<Grid item xs={12} md={12} lg={12}>
+				<Grid container spacing={0}
+					alignItems="center"
+					justifyContent="center"
+					direction="row">
+					<Grid item xs={5}>
+						<Button onClick={() => {
+							navigate('/admin');
+						}} >Go To Admin Page</Button>
+					</Grid>
+			{/* </Grid> */}
 
 
 
 			{
 				// Apply button
 			}
-			<Grid item >
-				<Button onClick={
-					() => {
-						// When the user clicks the Apply button
-						openModal();
-					}
-				}>
-					{`Apply to ${selected.length || ""} selected classes`}
-				</Button>
+			{/* <Grid item > */}
+				<Grid item xs={6}>
+					<Button onClick={() => {// When the user clicks the Apply button
+																	openModal();
+																	}}>
+						{`Apply to ${selected.length || ""} selected classes`}
+							</Button>
+					</Grid>
+
+					<Grid item xs={1}>
+						<IconButton aria-label="delete" onClick={e => {
+							// changeDark();
+							setDarkmodeIcon(!darkmodeIcon);
+							changeDark();
+							console.log(e);
+						}}>
+							{darkmodeIcon ? <Brightness7Icon /> : <DarkModeIcon />}
+						</IconButton>
+					</Grid>
+
+				</Grid>
 			</Grid>
 
-			<Grid item xs={1}>
-				<IconButton aria-label="delete" onClick={e => {
-					// changeDark();
-					setDarkmodeIcon(!darkmodeIcon);
-					changeDark();
-					console.log(e);
-				}}>
-					{darkmodeIcon ? <Brightness7Icon /> : <DarkModeIcon />}
-				</IconButton>
-			</Grid>
+
 
 			{
 				// Title of the search bar
