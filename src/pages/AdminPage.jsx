@@ -8,6 +8,7 @@ import PublicationCard from '../components/PublicationCard'
 import PublicationTable from '../components/PublicationTable';
 import s from '../components/styles/Divider.module.css';
 
+
 //hypothetical data fetched from server
 //To be removed, when mock API is operational
 function createData(
