@@ -14,6 +14,7 @@ export const LandingPage = ({ changeDark }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
+	const [darkmodeIcon, setDarkmodeIcon] = useState(false);
 
 	useEffect(() => {
 		document.title = "Landing Page";
@@ -166,8 +167,13 @@ export const LandingPage = ({ changeDark }) => {
 			</Grid>
 
 			<Grid item xs={1}>
-				<IconButton aria-label="delete" onClick={changeDark}>
-					{changeDark ? <Brightness7Icon /> : <DarkModeIcon />}
+				<IconButton aria-label="delete" onClick={e => {
+					// changeDark();
+					setDarkmodeIcon(!darkmodeIcon);
+					changeDark();
+					console.log(e);
+				}}>
+					{darkmodeIcon ? <Brightness7Icon /> : <DarkModeIcon />}
 				</IconButton>
 			</Grid>
 
