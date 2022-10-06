@@ -3,6 +3,7 @@ import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel,
 import { Navigate, useNavigate } from 'react-router-dom';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { fetchClasses } from '../api/classesApi';
 
 export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
@@ -26,12 +27,6 @@ export const LandingPage = ({ changeDark }) => {
 		}
 		getTasks();
 	}, []);
-
-	const fetchClasses = async () => {
-		const res = await fetch("http://localhost:5000/classes");
-		const data = await res.json();
-		return data;
-	}
 
 	const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
