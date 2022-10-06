@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox, IconButton } from '@mui/material';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Button, TextField, Typography, Grid, Input, ListItem, Modal, Box, Checkbox, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { fetchClasses } from '../api/classesApi';
@@ -152,20 +152,20 @@ export const LandingPage = ({ changeDark }) => {
 							navigate('/admin');
 						}} >Go To Admin Page</Button>
 					</Grid>
-			{/* </Grid> */}
+					{/* </Grid> */}
 
 
 
-			{
-				// Apply button
-			}
-			{/* <Grid item > */}
-				<Grid item xs={6}>
-					<Button onClick={() => {// When the user clicks the Apply button
-																	openModal();
-																	}}>
-						{`Apply to ${selected.length || ""} selected classes`}
-							</Button>
+					{
+						// Apply button
+					}
+					{/* <Grid item > */}
+					<Grid item xs={6}>
+						<Button onClick={() => {// When the user clicks the Apply button
+							openModal();
+						}}>
+							{`Apply to ${selected.length || ""} selected classes`}
+						</Button>
 					</Grid>
 
 					<Grid item xs={1}>
