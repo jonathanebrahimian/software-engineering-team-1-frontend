@@ -16,14 +16,14 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $app-node_REPOSITORY_URI:latest ./.
-      - docker tag $app-node_REPOSITORY_URI:latest $app-node_REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $fastapi_REPOSITORY_URI:latest ././
+      - docker tag $fastapi_REPOSITORY_URI:latest $fastapi_REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images..
-      - docker push $app-node_REPOSITORY_URI:latest
-      - docker push $app-node_REPOSITORY_URI:$IMAGE_TAG
-      - "echo \"[{\\\"name\\\":\\\"app-node\\\", \\\"imageUri\\\":\\\"$app-node_REPOSITORY_URI\\\"}]\" > imagedefinitions.json"
+      - docker push $fastapi_REPOSITORY_URI:latest
+      - docker push $fastapi_REPOSITORY_URI:$IMAGE_TAG
+      - "echo \"[{\\\"name\\\":\\\"fastapi\\\", \\\"imageUri\\\":\\\"$fastapi_REPOSITORY_URI\\\"}]\" > imagedefinitions.json"
 artifacts:
   files: imagedefinitions.json

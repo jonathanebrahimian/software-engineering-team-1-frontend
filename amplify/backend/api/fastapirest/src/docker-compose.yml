@@ -1,32 +1,11 @@
 version: '3.8'
 services:
-  dynamodb-local:
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-    image: "amazon/dynamodb-local:latest"
-    container_name: dynamodb-local
-    ports:
-      - "8000:8000"
-    volumes:
-      - "./docker/dynamodb:/home/dynamodblocal/data"
-    working_dir: /home/dynamodblocal
-    hostname: localhost
-
   app-node:
     image: fastapi:latest
+    container_name: fastapi
+    command: "uvicorn app.main:app --host 0.0.0.0 --port 80"
     build: 
-      context: ./app
+      context: ./
       dockerfile: Dockerfile 
     ports:
       - "80:80"
-    # depends_on:
-    #   - "dynamodb-local"
-    # links:
-    #   - "dynamodb-local"
-    # volumes:
-    #   - type: bind
-    #     source: ./app
-    #     target: /code/app
-    # environment:
-    #   AWS_ACCESS_KEY_ID: 'DUMMYIDEXAMPLE'
-    #   AWS_SECRET_ACCESS_KEY: 'DUMMYEXAMPLEKEY'
-    #   REGION: 'us-east-2'
