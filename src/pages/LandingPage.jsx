@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField, Typography, Grid, Item, ListItem, Modal, Box, styel, Input, Checkbox, IconButton } from '@mui/material';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Button, TextField, Typography, Grid, Input, ListItem, Modal, Box, Checkbox, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { fetchClasses } from '../api/classesApi';
@@ -8,16 +8,13 @@ import { fetchClasses } from '../api/classesApi';
 export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
 
-	// const classesToTest = [
-
-	// ]
-
 	const [classes, setClasses] = useState([]);
 	const [selected, setSelected] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
+	const [darkmodeIcon, setDarkmodeIcon] = useState(false);
 
 	useEffect(() => {
 		document.title = "Landing Page";
@@ -145,35 +142,47 @@ export const LandingPage = ({ changeDark }) => {
 			{
 				// Go to admin page
 			}
-			<Grid item xs>
-				<div>
-					<Button onClick={() => {
-						navigate('/admin');
-					}} >Go To Admin Page</Button>
-				</div>
-			</Grid>
+			<Grid item xs={12} md={12} lg={12}>
+				<Grid container spacing={0}
+					alignItems="center"
+					justifyContent="center"
+					direction="row">
+					<Grid item xs={5}>
+						<Button onClick={() => {
+							navigate('/admin');
+						}} >Go To Admin Page</Button>
+					</Grid>
+					{/* </Grid> */}
 
 
 
-			{
-				// Apply button
-			}
-			<Grid item >
-				<Button onClick={
-					() => {
-						// When the user clicks the Apply button
-						openModal();
+					{
+						// Apply button
 					}
-				}>
-					{`Apply to ${selected.length || ""} selected classes`}
-				</Button>
+					{/* <Grid item > */}
+					<Grid item xs={6}>
+						<Button onClick={() => {// When the user clicks the Apply button
+							openModal();
+						}}>
+							{`Apply to ${selected.length || ""} selected classes`}
+						</Button>
+					</Grid>
+
+					<Grid item xs={1}>
+						<IconButton aria-label="delete" onClick={e => {
+							// changeDark();
+							setDarkmodeIcon(!darkmodeIcon);
+							changeDark();
+							console.log(e);
+						}}>
+							{darkmodeIcon ? <DarkModeIcon /> : <Brightness7Icon />}
+						</IconButton>
+					</Grid>
+
+				</Grid>
 			</Grid>
 
-			<Grid item xs={1}>
-				<IconButton aria-label="delete" onClick={changeDark}>
-					{changeDark ? <Brightness7Icon /> : <DarkModeIcon />}
-				</IconButton>
-			</Grid>
+
 
 			{
 				// Title of the search bar
