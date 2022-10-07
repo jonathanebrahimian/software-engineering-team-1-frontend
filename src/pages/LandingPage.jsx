@@ -3,7 +3,7 @@ import { Button, TextField, Typography, Grid, Input, ListItem, Modal, Box, Check
 import { useNavigate } from 'react-router-dom';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { fetchClasses } from '../api/classesApi';
+import { fetchClasses } from '../api/classesApi.ts';
 
 export const LandingPage = ({ changeDark }) => {
 	const navigate = useNavigate();
