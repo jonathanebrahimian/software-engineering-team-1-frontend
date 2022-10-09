@@ -33,16 +33,8 @@ function LoginPage() {
                         alignItems: 'center'
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'white' }}>
-                        <Box
-                            component="img"
-                            sx={{
-                                height: 30,
-                                width: 30
-                            }}
-                            alt="SMU icon"
-                            src="https://raw.githubusercontent.com/jonathanebrahimian/software-engineering-team-1-frontend/master/src/lyle_logo.png"
-                        />
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
