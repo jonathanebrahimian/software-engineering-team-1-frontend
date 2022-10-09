@@ -59,7 +59,7 @@ function ApplicationBar() {
 
 	const handleAdminMenuClose = () => {
 		setAdminAnchorEl(null);
-		navigate('/');
+		navigate('/login');
 	}
 
 	const handleMobileMenuOpen = event => {
@@ -142,13 +142,12 @@ function ApplicationBar() {
 			open={isAdminMenuOpen}
 			onClose={handleAdminMenuClose}
 		>
-			<MenuItem>
+			<MenuItem onClick={handleAdminMenuClose}>
 				<IconButton
 					size='large'
 					aria-label='logout'
 					aria-haspopup='true'
 					color='inherit'
-					onClick={handleAdminMenuClose}
 				>
 					<LogoutTwoToneIcon />
 				</IconButton>
