@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-
 import ThemeConfig from '../theme';
 import Router from '../routes';
 

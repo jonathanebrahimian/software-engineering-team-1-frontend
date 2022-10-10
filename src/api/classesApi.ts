@@ -1,11 +1,15 @@
+// When the frontend is running in amplify, use the amplify domain. Otherwise, use json server
+const BACKEND_URL = process.env.ENV ? 'http://localhost:5000' : "http://localhost:5000";
+
+
 export const fetchClasses = async () => {
-	const res = await fetch(`http://localhost:5000/classes`);
+	const res = await fetch(`${BACKEND_URL}/classes`);
 	const data = await res.json();
 	return data;
 }
 
 export const fetchClass = async (id: number) => {
-	const res = await fetch(`http://localhost:5000/classe/${id}`);
+	const res = await fetch(`${BACKEND_URL}/class/${id}`);
 	const data = await res.json();
 	return data;
 }
