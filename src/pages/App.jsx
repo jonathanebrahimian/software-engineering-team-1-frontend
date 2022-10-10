@@ -3,7 +3,7 @@ import ThemeConfig from '../theme';
 import Router from '../routes';
 
 function App() {
-	const [dark, setDark] = useState(true);
+	const [dark, setDark] = useState(false);
 
 	function changeMode() {
 		setDark(!dark);
