@@ -25,21 +25,26 @@ import AnalyticsTwoToneIcon from '@mui/icons-material/AnalyticsTwoTone';
 import AdminPanelSettingsTwoToneIcon from '@mui/icons-material/AdminPanelSettingsTwoTone';
 import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 import { Navigate, useNavigate } from 'react-router-dom';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
-
-function ApplicationBar() {
+function ApplicationBar(changeDark) {
 	//Note: An anchorEl is a prop used to set the position(i.e location) of a Menu component
 	//See documentation for more infos.
 	const [mainAnchorEl, setMainAnchorEl] = useState(null);
 	const [adminAnchorEl, setAdminAnchorEl] = useState(null);
 	const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
 
+
 	//When menu is closed "anchorEl" and "mobileAnchorEl" are "null",
 	//so the Boolean constructor returns "false"
 	const isMainMenuOpen = Boolean(mainAnchorEl);
 	const isAdminMenuOpen = Boolean(adminAnchorEl);
 	const isMobileMenuOpen = Boolean(mobileAnchorEl);
+
+	const [darkmodeIcon, setDarkmodeIcon] = useState(false);
+
 
 	const navigate = useNavigate();
 
@@ -179,6 +184,16 @@ function ApplicationBar() {
 						Dashboard
 					</Typography>
 					<Box sx={{ flexGrow: 1 }} />
+					<Box>
+						<IconButton aria-label="delete" onClick={e => {
+							// changeDark();
+							setDarkmodeIcon(!darkmodeIcon);
+							changeDark();
+							console.log(e);
+						}}>
+							{darkmodeIcon ? <Brightness7Icon /> : <DarkModeIcon />}
+						</IconButton>
+					</Box>
 					<Box sx={{ display: { md: 'flex' } }}>
 						<IconButton
 							size='large'
