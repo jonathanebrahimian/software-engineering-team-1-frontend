@@ -224,7 +224,7 @@ export const LandingPage = ({ changeDark }) => {
 				<Typography> Classes: </Typography>
 			</Grid>
 			{
-				(classes.map((element, index) => {
+				(Array.isArray(classes) && classes.map((element, index) => {
 					if (element.name.toLowerCase().includes(searchValue.toLowerCase())) {
 						return (
 							<Grid item key={index}>
