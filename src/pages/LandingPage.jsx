@@ -89,7 +89,7 @@ export const LandingPage = ({ changeDark }) => {
 	}
 
 	const CreateListings = ({ element, index }) => {
-		return (<Grid item key={index}>
+		return (<Grid item>
 			<Typography> {element.name}, {element.labCode}, {element.startTime} - {element.endTime} </Typography>
 			<Typography> {element.description} </Typography>
 			<Typography>
@@ -245,10 +245,10 @@ export const LandingPage = ({ changeDark }) => {
 				<Typography> Classes: </Typography>
 			</Grid>
 			{
-				(Array.isArray(classes) && classes.map((element, index) => {
+				(classes.map((element, index) => {
 					if (element.name.toLowerCase().includes(searchValue.toLowerCase())) {
 						return (
-							<CreateListings element={element} index={index} />
+							<CreateListings key={index} element={element} index={index} />
 						)
 					}
 
