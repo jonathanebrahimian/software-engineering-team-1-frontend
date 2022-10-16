@@ -88,8 +88,29 @@ export const LandingPage = ({ changeDark }) => {
 		setSelected(selected.filter((course) => course !== nameOfCourse));
 	}
 
-	return <>
+	const CreateListings = ({ element, index }) => {
+		return (<Grid item key={index}>
+			<Typography> {element.name}, {element.labCode}, {element.startTime} - {element.endTime} </Typography>
+			<Typography> {element.description} </Typography>
+			<Typography>
+				Apply:
+				<Checkbox {...label} checked={element.selected} onChange={() => {
+					if (element.selected) {
+						console.log('deselecting');
+						deselect(element.name);
+						element.selected = false;
+					}
+					else {
+						console.log('selecting');
+						select(element.name);
+						element.selected = true;
+					}
+				}} />
+			</Typography>
+		</Grid>)
+	}
 
+	return <>
 		<Modal
 			open={modalIsOpen}
 			onClose={closeModal}
@@ -227,25 +248,7 @@ export const LandingPage = ({ changeDark }) => {
 				(Array.isArray(classes) && classes.map((element, index) => {
 					if (element.name.toLowerCase().includes(searchValue.toLowerCase())) {
 						return (
-							<Grid item key={index}>
-								<Typography> {element.name}, {element.labCode}, {element.startTime} - {element.endTime} </Typography>
-								<Typography> {element.description} </Typography>
-								<Typography>
-									Apply:
-									<Checkbox {...label} checked={element.selected} onChange={() => {
-										if (element.selected) {
-											console.log('deselecting');
-											deselect(element.name);
-											element.selected = false;
-										}
-										else {
-											console.log('selecting');
-											select(element.name);
-											element.selected = true;
-										}
-									}} />
-								</Typography>
-							</Grid>
+							<CreateListings element={element} index={index} />
 						)
 					}
 
