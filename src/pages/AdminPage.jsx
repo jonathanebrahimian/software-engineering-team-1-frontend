@@ -27,7 +27,7 @@ const positions = [
     createData('CS 1340', 'N14', 'fsfz2', 3, 'closed'),
     createData('CS 2240', 'N14', '34zf2', 1, 'closed'),
 ]
-function AdminPage() {
+export default function AdminPage() {
     return (
         <Stack direction='column'>
             <ApplicationBar />
@@ -54,4 +54,4 @@ function AdminPage() {
     );
 }
 
-export default AdminPage;
+// export default AdminPage;
