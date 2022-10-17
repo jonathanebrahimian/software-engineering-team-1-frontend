@@ -245,15 +245,12 @@ export const LandingPage = ({ changeDark }) => {
 				<Typography> Classes: </Typography>
 			</Grid>
 			{
-				(classes.map((element, index) => {
-					if (element.name.toLowerCase().includes(searchValue.toLowerCase())) {
-						return (
-							<CreateListings key={index} element={element} index={index} />
-						)
-					}
-
-				}))}
-
+				(classes
+					.filter(element => element.name.toLowerCase().includes(searchValue.toLowerCase()))
+					.map((element, index) => {
+						return <CreateListings key={index} element={element} index={index} />
+					}))
+			}
 		</Grid>
 	</>
 }
