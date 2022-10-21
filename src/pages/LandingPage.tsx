@@ -246,9 +246,8 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 
 				(classes
 					.filter(element => {
-						console.log(element);
-						console.log(typeof element)
-						return element.toString().toLowerCase().includes(searchValue.toLowerCase());
+						return element.toString().toLowerCase()
+							.includes(searchValue.toLowerCase());
 					})
 					.map((element, index) => {
 						return <CreateListings key={index} element={element} />
