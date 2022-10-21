@@ -3,13 +3,13 @@ import { Button, TextField, Typography, Grid, Input, Modal, Box, Checkbox, IconB
 import { useNavigate } from 'react-router-dom';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { fetchClasses } from '../api/classesApi.ts';
+import { fetchClasses } from '../api/classesApi';
 
-export const LandingPage = ({ changeDark }) => {
+const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 	const navigate = useNavigate();
 
-	const [classes, setClasses] = useState([]);
-	const [selected, setSelected] = useState([]);
+	const [classes, setClasses] = useState<string[]>([]);
+	const [selected, setSelected] = useState<string[]>([]);
 	const [searchValue, setSearchValue] = useState('');
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [name, setName] = useState('');
@@ -39,9 +39,9 @@ export const LandingPage = ({ changeDark }) => {
 		p: 4,
 	};
 
-	function isChecked(course) {
-		return selected.includes(course);
-	}
+	// function isChecked(course) {
+	// 	return selected.includes(course);
+	// }
 
 	function submitApplications() {
 		if (name.length === 0) {
@@ -80,15 +80,15 @@ export const LandingPage = ({ changeDark }) => {
 		setModalIsOpen(true);
 	}
 
-	function select(nameOfCourse) {
+	function select(nameOfCourse: string) {
 		setSelected([...selected, nameOfCourse]);
 	}
 
-	function deselect(nameOfCourse) {
+	function deselect(nameOfCourse: string) {
 		setSelected(selected.filter((course) => course !== nameOfCourse));
 	}
 
-	const CreateListings = ({ element, index }) => {
+	const CreateListings = ({ element }: { element: any }) => {
 		return (<Grid item>
 			<Typography> {element.name}, {element.labCode}, {element.startTime} - {element.endTime} </Typography>
 			<Typography> {element.description} </Typography>
@@ -226,10 +226,10 @@ export const LandingPage = ({ changeDark }) => {
 						alignItems="center"
 					>
 						<Typography justifyContent={"center"}>Search for Class Code: </Typography>
-						<TextField justifyContent={"center"} onChange={(event) => {
+						{/* <TextField justifyContent={"center"} onChange={(event) => {
 							setSearchValue(event.target.value);
 						}}>
-						</TextField>
+						</TextField> */}
 					</Box>
 				</Grid>
 			</Grid>
@@ -246,11 +246,13 @@ export const LandingPage = ({ changeDark }) => {
 			</Grid>
 			{
 				(classes
-					.filter(element => element.name.toLowerCase().includes(searchValue.toLowerCase()))
+					.filter(element => element.toLowerCase().includes(searchValue.toLowerCase()))
 					.map((element, index) => {
-						return <CreateListings key={index} element={element} index={index} />
+						return <CreateListings key={index} element={element} />
 					}))
 			}
 		</Grid>
 	</>
 }
+
+export default LandingPage
