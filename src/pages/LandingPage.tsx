@@ -8,7 +8,7 @@ import { fetchClasses } from '../api/classesApi';
 const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 	const navigate = useNavigate();
 
-	const [classes, setClasses] = useState<string[]>([]);
+	const [classes, setClasses] = useState<ClassType[]>([]);
 	const [selected, setSelected] = useState<string[]>([]);
 	const [searchValue, setSearchValue] = useState('');
 	const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -87,8 +87,17 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 	function deselect(nameOfCourse: string) {
 		setSelected(selected.filter((course) => course !== nameOfCourse));
 	}
+	interface ClassType {
+		id: number;
+		name: string;
+		labCode: string;
+		startTime: string;
+		endTime: string;
+		description: string;
+		selected: boolean;
+	}
 
-	const CreateListings = ({ element }: { element: any }) => {
+	const CreateListings = ({ element }: { element: ClassType }) => {
 		return (<Grid item>
 			<Typography> {element.name}, {element.labCode}, {element.startTime} - {element.endTime} </Typography>
 			<Typography> {element.description} </Typography>
@@ -106,6 +115,7 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 						element.selected = true;
 					}
 				}} />
+
 			</Typography>
 		</Grid>)
 	}
@@ -192,7 +202,6 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 						<IconButton aria-label="delete" onClick={e => {
 							setDarkmodeIcon(!darkmodeIcon);
 							changeDark();
-							console.log(e);
 						}}>
 							{darkmodeIcon ? <Brightness7Icon /> : <DarkModeIcon />}
 						</IconButton>
@@ -251,7 +260,8 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 					})
 					.map((element, index) => {
 						return <CreateListings key={index} element={element} />
-					}))
+					})
+				)
 			}
 		</Grid>
 	</>
