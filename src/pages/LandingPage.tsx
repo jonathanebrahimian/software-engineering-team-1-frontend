@@ -17,7 +17,7 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 	const [darkmodeIcon, setDarkmodeIcon] = useState(false);
 
 	useEffect(() => {
-		document.title = "Landing Page";
+		// document.title = "Landing Page";
 		const getTasks = async () => {
 			const classesFromServer = await fetchClasses();
 			setClasses(classesFromServer);
@@ -109,7 +109,6 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 			</Typography>
 		</Grid>)
 	}
-
 	return <>
 		<Modal
 			open={modalIsOpen}
@@ -225,10 +224,10 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 						alignItems="center"
 					>
 						<Typography justifyContent={"center"}>Search for Class Code: </Typography>
-						{/* <TextField justifyContent={"center"} onChange={(event) => {
+						<TextField onChange={(event) => {
 							setSearchValue(event.target.value);
 						}}>
-						</TextField> */}
+						</TextField>
 					</Box>
 				</Grid>
 			</Grid>
@@ -244,8 +243,13 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 				<Typography> Classes: </Typography>
 			</Grid>
 			{
+
 				(classes
-					.filter(element => element.toLowerCase().includes(searchValue.toLowerCase()))
+					.filter(element => {
+						console.log(element);
+						console.log(typeof element)
+						return element.toString().toLowerCase().includes(searchValue.toLowerCase());
+					})
 					.map((element, index) => {
 						return <CreateListings key={index} element={element} />
 					}))
