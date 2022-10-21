@@ -191,7 +191,6 @@ const LandingPage: React.FC<{ changeDark: any }> = ({ changeDark }) => {
 
 					<Grid item xs={1}>
 						<IconButton aria-label="delete" onClick={e => {
-							// changeDark();
 							setDarkmodeIcon(!darkmodeIcon);
 							changeDark();
 							console.log(e);
