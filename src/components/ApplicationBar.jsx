@@ -19,7 +19,6 @@ import Menu from '@mui/material/Menu';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import DashboardTwoToneIcon from '@mui/icons-material/DashboardTwoTone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import ClassTwoToneIcon from '@mui/icons-material/ClassTwoTone';
 import AnalyticsTwoToneIcon from '@mui/icons-material/AnalyticsTwoTone';
 import AdminPanelSettingsTwoToneIcon from '@mui/icons-material/AdminPanelSettingsTwoTone';
@@ -195,15 +194,6 @@ function ApplicationBar(changeDark) {
 						</IconButton>
 					</Box>
 					<Box sx={{ display: { md: 'flex' } }}>
-						<IconButton
-							size='large'
-							aria-label="show 17 new noticatifications"
-							color='inherit'
-						>
-							<Badge badgeContent={17} color="error">
-								<NotificationsIcon />
-							</Badge>
-						</IconButton>
 						<IconButton
 							size='large'
 							edge='end'
