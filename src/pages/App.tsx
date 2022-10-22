@@ -26,7 +26,7 @@ function App() {
 		},
 		{
 			path: "/admin",
-			element: <AdminPage />,
+			element: <AdminPage changeDark={changeMode}/>,
 		},
 		{
 			path: "/login",
