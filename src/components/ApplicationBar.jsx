@@ -28,7 +28,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
-function ApplicationBar(changeDark) {
+function ApplicationBar({ changeDark }) {
 	//Note: An anchorEl is a prop used to set the position(i.e location) of a Menu component
 	//See documentation for more infos.
 	const [mainAnchorEl, setMainAnchorEl] = useState(null);

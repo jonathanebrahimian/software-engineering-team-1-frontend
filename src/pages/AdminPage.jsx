@@ -27,10 +27,10 @@ const positions = [
     createData('CS 1340', 'N14', 'fsfz2', 3, 'closed'),
     createData('CS 2240', 'N14', '34zf2', 1, 'closed'),
 ]
-export default function AdminPage({changeDark}) {
+export default function AdminPage({ changeDark }) {
     return (
         <Stack direction='column'>
-            <ApplicationBar />
+            <ApplicationBar changeDark={changeDark} />
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
                     <Divider className={s.title}>Summary</Divider>
