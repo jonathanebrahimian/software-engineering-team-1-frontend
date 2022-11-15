@@ -28,6 +28,9 @@ const positions = [
     createData('CS 2240', 'N14', '34zf2', 1, 'closed'),
 ]
 export default function AdminPage({ changeDark }) {
+	const [totalApplication, setTotalApplications] = useState(2);
+	const [totalPublication, setTotalPublication] = useState(4);
+	const [publishedPositions, setPublishedPositions] = useState(positions);
     return (
         <Stack direction='column'>
             <ApplicationBar changeDark={changeDark} />
@@ -37,17 +40,17 @@ export default function AdminPage({ changeDark }) {
                 </Grid>
                 <Grid container sx={{ mx: 7, mt: 4 }} spacing={2}>
                     <Grid item xs={6}>
-                        <PublicationCard totalPublication={4} />
+                        <PublicationCard totalPublication={totalPublication} />
                     </Grid>
                     <Grid item xs={6}>
-                        <ApplicationCard totalApplication={2} />
+                        <ApplicationCard totalApplication={totalApplication} />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
                     <Divider className={s.title}>Recently Published Positions (5)</Divider>
                 </Grid>
                 <Grid item xs={12} sx={{ mx: 7, mt: 4 }}>
-                    <PublicationTable positions={positions} />
+                    <PublicationTable positions={publishedPositions} />
                 </Grid>
             </Grid>
         </Stack >
